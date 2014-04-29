@@ -2,7 +2,18 @@ div.box, div.cell {
   display: inline-block;
 }
 
+#sudoku {
+  font-size: 0;
+  text-align: center;
+
+}
+
 .cell input {
   width: 30px;
   height: 30px;
+}
+
+body {
+  text-align: center;
+  font-family: Arial;
 }
