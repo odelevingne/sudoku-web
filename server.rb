@@ -19,13 +19,51 @@ def puzzle(sudoku)
 end
 
 get '/' do
-	sudoku_solution = random_sudoku
-	session[:solution] = sudoku_solution
-  	@current_solution = puzzle(sudoku_solution)
+	prepare_to_check_solution
+	generate_new_puzzle_if_necessary
+	@current_solution = session[:current_board_status] || sessions[:puzzle]
+	@solution = session[:solution]
+	@puzzle = session[:puzzle]
   	erb :index
+end
+
+def prepare_to_check_solution
+	@check_solution = session[:check_solution]
+	session[:check_solution] = nil
+
+def generate_new_puzzle_if_necessay
+	return if session[:current_board_status]
+	sudoku = random_sudoku
+	session[:solution] = sudoku
+	session[:puzzle] = puzzle(sudoku)
+	session[:current_board_status] = session[:puzzle]
+end
+
 end
 
 get '/solution' do
 	@current_solution = session[:solution]
 	erb :index
 end
+
+post '/' do
+	cells = box_order_to_row_order(params["cell"])
+	session[:current_board_status] = cells.map{|value| value.to_i }.join
+	session[:check_solution] = true
+	redirect to("/")
+end
+
+def box_order_to_row_order(cells)
+	boxes = cells.each_slice(9).to_a
+	(0..8).to_a.inject([]) {|memo, i|
+	first_box_index = i / 3*3
+	three_boxes = boxes[first_box_index, 3]
+	three_rows_of_three = three_boxes.map do |box|
+		row_number_in_a_box = i % 3
+		first_cell_in_the_row_index = row_number_in_a_box * 3
+		box[first_cell_in_the_row_index, 3]
+	end
+	memo +=three_rows_of_three.flatten
+}
+
+
