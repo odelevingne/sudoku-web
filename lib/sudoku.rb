@@ -1,9 +1,3 @@
-require 'sinatra'
-
-get '/' do
-	erb :index
-end
-
 class Sudoku
   
   COLUMN_SIZE = 9
