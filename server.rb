@@ -42,7 +42,7 @@ def prepare_to_check_solution
 	session[:check_solution] = nil
 end
 
-def generate_new_puzzle_if_necessary(level = 60)
+def generate_new_puzzle_if_necessary(level = 50)
 	return if session[:current_board_status] && session[:puzzle] && session[:solution]
 	sudoku = random_sudoku
 	session[:solution] = sudoku
@@ -68,7 +68,19 @@ end
 
 post '/easy' do
 		session.clear
-		generate_new_puzzle_if_necessary(1)
+		generate_new_puzzle_if_necessary(25)
+		redirect to("/")
+end
+
+post '/medium' do
+		session.clear
+		generate_new_puzzle_if_necessary(70)
+		redirect to("/")
+end
+
+post '/hard' do
+		session.clear
+		generate_new_puzzle_if_necessary(81)
 		redirect to("/")
 end
 
