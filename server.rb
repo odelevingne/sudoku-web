@@ -18,9 +18,10 @@ def random_sudoku
   sudoku.to_s.chars
 end
 
-def puzzle(sudoku)
+
+def puzzle(sudoku,level)
 	sudoku_to_solve = sudoku.dup
-	40.times { sudoku_to_solve[rand(0..80)] = 0}
+	level.times { sudoku_to_solve[rand(0..80)] = 0}
 	sudoku_to_solve
 end
 
@@ -41,11 +42,11 @@ def prepare_to_check_solution
 	session[:check_solution] = nil
 end
 
-def generate_new_puzzle_if_necessary
+def generate_new_puzzle_if_necessary(level = 60)
 	return if session[:current_board_status] && session[:puzzle] && session[:solution]
 	sudoku = random_sudoku
 	session[:solution] = sudoku
-	session[:puzzle] = puzzle(sudoku)
+	session[:puzzle] = puzzle(sudoku,level)
 	session[:current_board_status] = session[:puzzle]
 end
 
@@ -63,6 +64,12 @@ post '/' do
 	session[:current_board_status] = cells.map{|value| value.to_i }.join
 	session[:check_solution] = true
 	redirect to("/")
+end
+
+post '/easy' do
+		session.clear
+		generate_new_puzzle_if_necessary(1)
+		redirect to("/")
 end
 
 def box_order_to_row_order(cells)

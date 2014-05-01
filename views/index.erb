@@ -9,6 +9,13 @@
 		<%= flash[:notice] %>
 	</div>
 	<div id="sudoku">
+		
+		<form action="/easy" method="post">
+			<input type = "submit" value="Easy Game" name="level">			
+		</form>
+
+		
+		
 		<form action="/" method="post">
 			<% 3.times do |row| %>
 				<div class='row'>

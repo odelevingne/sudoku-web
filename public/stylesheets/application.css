@@ -1,4 +1,11 @@
-div.box, div.cell {
+div.box {
+  display: inline-block;
+  border-style: solid;
+  border-width: 1;
+  border-color: #666375;
+}
+
+div.cell {
   display: inline-block;
 }
 
@@ -19,11 +26,11 @@ body {
 }
 
 .incorrect {
-  background-color: #EDDE3B;
+  background-color: #E8E290;
 }
 
 .value-provided{
-  background-color: #222429;
+  background-color: #938DB0;
 }
 
 # {
