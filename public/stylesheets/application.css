@@ -19,9 +19,9 @@ body {
 }
 
 .incorrect {
-  background-color: yellow;
+  background-color: #EDDE3B;
 }
 
 .value-provided{
-  background-color: #DDD;
+  background-color: #222429;
 }
