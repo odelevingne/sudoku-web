@@ -2,8 +2,7 @@
 	<div id="flash">
 		<%= flash[:notice] %>
 	</div>
-	<div id="sudoku">
-		
+	<div class="diffuclty_buttons">
 		<form action="/easy" method="post">
 			<input type = "submit" value="Easy Game" >			
 		</form>
@@ -14,15 +13,16 @@
 
 		<form action="/hard" method="post">
 			<input type = "submit" value="Hard Game">			
-		</form>	
-		
+		</form>
+	<div>
+	<div id="sudoku">		
 		<form action="/" method="post">
 			<% 3.times do |row| %>
 				<div class='row'>
 					<% 3.times do |box| %>
 						<div class='box'>
 							<% 3.times do |cell_row| %>
-								<div class="cell-row">
+								<div class="cell_row">
 									<% 3.times do |cell| %>
 										<%= partial :cell, :locals=>{:cell_index => row*27+box*3+cell_row*9+cell} %>
 									<% end %>						 
@@ -32,10 +32,10 @@
 					<% end %>
 				</div>
 			<% end %>
-			<button>Check your solution!</button>
+			<button>Check your solution</button>
 		</form>
 		<form action="/solution" method="get">
-		<input type = "submit" value="I give up" >
+		<input type = "submit" value="I give up!" >
 		</form> 	
 	</div>
 

@@ -50,8 +50,6 @@ def generate_new_puzzle_if_necessary(level = 50)
 	session[:current_board_status] = session[:puzzle]
 end
 
-
-
 get '/solution' do
 	@current_solution = session[:solution]
 	@puzzle = []
@@ -68,7 +66,7 @@ end
 
 post '/easy' do
 		session.clear
-		generate_new_puzzle_if_necessary(25)
+		generate_new_puzzle_if_necessary(40)
 		redirect to("/")
 end
 
