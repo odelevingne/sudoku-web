@@ -37,7 +37,7 @@ end
 def prepare_to_check_solution
 	@check_solution = session[:check_solution]
 	if @check_solution
-		flash[:notice] = "Incorrect correct values are highlighted in yellow"
+		flash[:notice] = "Incorrect values are highlighted in yellow"
 	end
 	session[:check_solution] = nil
 end
@@ -83,6 +83,14 @@ post '/hard' do
 		generate_new_puzzle_if_necessary(81)
 		redirect to("/")
 end
+
+get '/solution' do
+			session[:solution] = sudoku
+			session[:puzzle] = puzzle(sudoku,level)
+			session[:current_board_status] = session[:puzzle]
+			erb :index
+end
+
 
 def box_order_to_row_order(cells)
 	boxes = cells.each_slice(9).to_a

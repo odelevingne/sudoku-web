@@ -1,26 +1,20 @@
-<html>
-<head>
-	<title>Sudoku Game</title>
-	<link href="/stylesheets/application.css"rel="stylesheet" type="text/css">
-</head>
-<body>
-	<h1>You are going to die. :)</h1>
+	<h1>Sudoku is hard</h1>
 	<div id="flash">
 		<%= flash[:notice] %>
 	</div>
 	<div id="sudoku">
 		
 		<form action="/easy" method="post">
-			<input type = "submit" value="Easy Game" name="level">			
+			<input type = "submit" value="Easy Game" >			
 		</form>
 
 		<form action="/medium" method="post">
-			<input type = "submit" value="Medium Game" name="level">			
+			<input type = "submit" value="Medium Game">			
 		</form>
 
 		<form action="/hard" method="post">
-			<input type = "submit" value="Hard Game" name="level">			
-		</form>		
+			<input type = "submit" value="Hard Game">			
+		</form>	
 		
 		<form action="/" method="post">
 			<% 3.times do |row| %>
@@ -38,12 +32,11 @@
 					<% end %>
 				</div>
 			<% end %>
-			<button>Check solution</button>
-		</form>	
+			<button>Check your solution!</button>
+		</form>
+		<form action="/solution" method="get">
+		<input type = "submit" value="I give up" >
+		</form> 	
 	</div>
-</body>
-</html>
 
 
-
-"BLACK&YELLOWBLACK&YELLOWBLACK&YELLOWBLACK&YELLOW"
