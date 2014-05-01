@@ -85,10 +85,7 @@ post '/hard' do
 end
 
 get '/solution' do
-			session[:solution] = sudoku
-			session[:puzzle] = puzzle(sudoku,level)
-			session[:current_board_status] = session[:puzzle]
-			erb :index
+			@current_solution = sessions[:solution]
 end
 
 
