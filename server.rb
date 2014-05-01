@@ -6,7 +6,7 @@ require_relative './lib/sudoku'
 require_relative './lib/cell'
 
 enable :sessions
-set :session_secret, '*&(^B234'
+set :session_secret, 'I am the secret key'
 set :partial_template_engine, :erb
 
 use Rack::Flash
