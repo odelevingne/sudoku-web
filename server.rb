@@ -28,7 +28,7 @@ end
 get '/' do
 	prepare_to_check_solution
 	generate_new_puzzle_if_necessary
-	@current_solution = session[:current_board_status] || sessions[:puzzle]
+	@current_solution = session[:current_board_status] || session[:puzzle]
 	@solution = session[:solution]
 	@puzzle = session[:puzzle]
   	erb :index
@@ -83,7 +83,14 @@ post '/hard' do
 end
 
 get '/solution' do
-			@current_solution = sessions[:solution]
+		@current_solution = sessions[:solution]
+end
+
+post '/reset' do
+		session[:solution]
+		session[:puzzle]
+		session[:current_board_status]
+		redirect to("/")
 end
 
 
