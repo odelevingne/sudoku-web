@@ -15,7 +15,6 @@ div.difficulty_buttons {
 
 #sudoku {
   font-size: 0;
-  text-align: center;
 }
 
 .cell input {
@@ -26,8 +25,11 @@ div.difficulty_buttons {
 }
 
 body {
-  text-align: center;
   font-family: Arial;
+  -webkit-column-count:3; /* Chrome, Safari, Opera */
+  -moz-column-count:3; /* Firefox */
+  column-count:3;
+  column-gap:40px;
 }
 
 .incorrect {
